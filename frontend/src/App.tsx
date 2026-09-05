@@ -122,7 +122,7 @@ export function App() {
   const handleUpdateBonus = async (userId: number, bonusTurns: number) => {
     try {
       const res = await fetch(`/api/users/${userId}/bonus`, {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bonus_turns: bonusTurns }),
       });

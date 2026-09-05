@@ -123,7 +123,13 @@ copy .env.example .env
 
 # 5. Mở file .env và điền BOT_TOKEN mới từ @BotFather cùng ADMIN_IDS
 
-# 6. Chạy bot
+# 6. Build Frontend (nếu chưa có thư mục static/dist)
+cd frontend
+npm install
+npm run build
+cd ..
+
+# 7. Chạy bot
 python run.py
 ```
 
@@ -145,7 +151,13 @@ cp .env.example .env
 # 5. Điền BOT_TOKEN và ADMIN_IDS vào file .env
 nano .env
 
-# 6. Chạy bot
+# 6. Build Frontend (nếu chưa có thư mục static/dist)
+cd frontend
+npm install
+npm run build
+cd ..
+
+# 7. Chạy bot
 python run.py
 ```
 

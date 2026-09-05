@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gift, MessageSquare, X } from 'lucide-react';
+import { Gift, MessageSquare, Wallet, X } from 'lucide-react';
 
 interface ModalsProps {
   bonusModal: { isOpen: boolean; userId: number; currentBonus: number };
@@ -8,8 +8,6 @@ interface ModalsProps {
   balanceModal: { isOpen: boolean; userId: number; currentBalance: number };
   onCloseBalance: () => void;
   onSubmitBalance: (userId: number, balance: number) => void;
-
-
   messageModal: { isOpen: boolean; userId: number; username: string | null };
   onCloseMessage: () => void;
   onSubmitMessage: (userId: number, content: string) => Promise<boolean>;
@@ -19,27 +17,25 @@ export const Modals: React.FC<ModalsProps> = ({
   bonusModal,
   onCloseBonus,
   onSubmitBonus,
-  messageModal,
   balanceModal,
   onCloseBalance,
   onSubmitBalance,
-
+  messageModal,
   onCloseMessage,
   onSubmitMessage,
 }) => {
   const [bonusInput, setBonusInput] = useState(bonusModal.currentBonus);
-  const [messageInput, setMessageInput] = useState('');
   const [balanceInput, setBalanceInput] = useState(balanceModal.currentBalance);
-
-  React.useEffect(() => {
-    setBalanceInput(balanceModal.currentBalance);
-  }, [balanceModal.currentBalance]);
-
+  const [messageInput, setMessageInput] = useState('');
   const [isSending, setIsSending] = useState(false);
 
   React.useEffect(() => {
     setBonusInput(bonusModal.currentBonus);
   }, [bonusModal.currentBonus]);
+
+  React.useEffect(() => {
+    setBalanceInput(balanceModal.currentBalance);
+  }, [balanceModal.currentBalance]);
 
   return (
     <>
@@ -108,12 +104,18 @@ export const Modals: React.FC<ModalsProps> = ({
                   Lưu Thay Đổi
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {balanceModal.isOpen && (
         <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md shadow-2xl">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                💰 Cập Nhật Số Dư Ví
+                <Wallet className="w-5 h-5 text-emerald-400" />
+                Cập Nhật Số Dư Ví
               </h3>
               <button
                 onClick={onCloseBalance}
@@ -172,11 +174,6 @@ export const Modals: React.FC<ModalsProps> = ({
                   Lưu Số Dư
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
             </div>
           </div>
         </div>

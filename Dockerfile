@@ -27,6 +27,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 
 # Copy source code
 COPY app/ ./app/
+COPY static/ ./static/
 COPY run.py .
 
 # Create persistent storage and logs directory with permissions

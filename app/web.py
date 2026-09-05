@@ -130,7 +130,7 @@ async def api_get_users(_: None = Depends(login_required)):
         for u in users
     ]
 
-@web_app.put("/api/users/{user_id}/bonus")
+@web_app.api_route("/api/users/{user_id}/bonus", methods=["PUT", "POST"])
 async def api_update_user_bonus(user_id: int, body: UpdateBonusRequest, _: None = Depends(login_required)):
     """Update bonus turns for a user."""
     if body.bonus_turns < 0:
